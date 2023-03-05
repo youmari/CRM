@@ -1,0 +1,30 @@
+<%= turbo_frame_tag client do %>
+  <article class="p-4 grid grid-cols-7 items-center border-b-2">
+    <div class="flex gap-1 flex-col ">
+      <p class="text-sm font-medium"><%= client.first_name %></p>
+      <p class="text-sm font-normal text-gray-600"><%= client.last_name %></p>
+    </div>
+    <h4 class="text-sm whitespace-nowrap text-gray-700"><%= client.email %></h4>
+    <h4 class="text-sm whitespace-nowrap text-gray-700 text-center"><%= client.phone_number || "N/A" %> </h4>
+    <h4 class="text-sm whitespace-nowrap text-gray-700 text-center"><%= client.company&.name || "N/A"  %> </h4>
+    <div>
+      <span class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60"><%= client.stage %></span>
+    </div>
+    <div class="flex items-center">
+      <span class="mr-2 text-sm"><%= client.probability %>%</span>
+      <div class="relative w-full">
+        <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+          <div style=" width: <%= client.probability %>%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-center gap-2">
+      <div href="#" class="w-4 transform hover:text-blue-500 hover:scale-110 mr-12">
+        <%= link_to "Edit", edit_client_path(client.id), class: 'inline mt-20 px-3 py-1 text-sm font-normal rounded-full text-blue-500 gap-x-2 bg-blue-100/60' %>
+      </div>
+      <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+        <%= button_to "Delete", client_path(client.id), method: :delete, class: 'inline px-3 py-1 text-sm font-normal rounded-full text-red-500 gap-x-2 bg-red-100/60' %>
+      </div>
+    </div>
+  </article>
+<% end %>

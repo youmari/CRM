@@ -1,0 +1,45 @@
+<section class="container px-4 mx-auto">
+  <div class="sm:flex sm:items-center sm:justify-between">
+    <div>
+      <div class="flex items-center gap-x-3">
+        <h2 class="text-lg font-medium text-gray-800">Clients</h2>
+        <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
+          <%= turbo_frame_tag "counter" do %>
+            <%= @clients.size %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-between mt-4 gap-x-3">
+    <%= render "client/search_field" %>
+    <div class="flex gap-3">
+      <%= link_to "Add Company", new_company_path, class: 'flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600', data: { turbo_frame: dom_id(Company.new) } %>
+      <%= link_to "Add Client", new_client_path, class: 'flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600', data: { turbo_frame: dom_id(Client.new) } %>
+    </div>
+  </div>
+  <%= turbo_frame_tag Client.new %>
+  <%= turbo_frame_tag Company.new %>
+  <div class="flex flex-col mt-6">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-auto h-[70vh] border border-gray-200 md:rounded-lg">
+          <div class="grid grid-cols-7 border-b-2 p-4">
+            <h3 class="text-sm font-normal rtl:text-right text-gray-500">Clients</h3>
+            <h3 class="text-sm font-normal text-left rtl:text-right text-gray-500">Email</h3>
+            <h3 class="text-sm font-normal text-left rtl:text-right text-gray-500 ml-11">Phone Number</h3><h3 class="text-sm font-normal text-left rtl:text-right text-gray-500 ml-11">Company</h3>
+            <h3 class="text-sm font-normal text-left rtl:text-right text-gray-500">Stages</h3>
+            <h3 class="text-sm font-normal text-left rtl:text-right text-gray-500">Probability</h3>
+            <h3 class="text-sm font-normal text-left rtl:text-right text-gray-500"></h3>
+          </div>
+          <div class="overflow-auto">
+            <%= render "clients" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= turbo_frame_tag "clients_pagination" do %>
+    <%= render 'client/pagination' %>
+  <% end %>
+</section>

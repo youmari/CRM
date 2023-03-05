@@ -1,0 +1,22 @@
+<%= form_with url: list_clients_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "clients" }, class: 'flex gap-4' do |f| %>
+  <%= f.text_field :name, placeholder: "Search by First Name", 
+                    value: session.dig('client_filters', 'name'), 
+                    class: "block w-full py-1.5 pr-10 text-gray-700 
+                            bg-white border border-gray-200 rounded-lg md:w-80 
+                            placeholder-gray-400/70 pl-4 rtl:pr-11 rtl:pl-5
+                            focus:border-blue-400
+                            focus:ring-blue-300 focus:outline-none 
+                            focus:ring focus:ring-opacity-40", 
+                    data: { action: 'input->search-form#search' } %>
+  <%= f.select :stage,
+  options_for_select(
+    Client::STAGES,
+    session.dig('client_filters', 'stage')
+  ),
+  { include_blank: 'Stages' },
+  class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+  data: { 
+    action: "change->search-form#search" 
+  }
+  %>
+<% end %>

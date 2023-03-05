@@ -1,0 +1,5 @@
+<%= simple_form_for @company, html: { class: "flex" } do |f| %>
+  <%= f.input :name, label: false, placeholder: 'Company Name', wrapper_html: { class: 'mr-5 mt-[25px]' }, input_html: { autofocus: true } %>
+  <%= f.button :submit, class: 'h-10' %>
+  <%= link_to "x", clients_path, class: 'text-gray-500 hover:scale-110' %>
+<% end %>
