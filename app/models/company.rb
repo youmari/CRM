@@ -1,6 +1,7 @@
-class Company < ApplicationRecord
-  has_many :employees
+# frozen_string_literal: true
 
-  validates :name, presence: true
-  
+class Company < ApplicationRecord
+  has_many :clients
+
+  validates :name, presence: true, uniqueness: true
 end
