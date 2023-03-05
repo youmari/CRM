@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,32 +12,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_101501) do
+ActiveRecord::Schema[7.0].define(version: 20_230_301_101_501) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.integer "employees_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_companies_on_name", unique: true
+  create_table 'clients', force: :cascade do |t|
+    t.string 'first_name', null: false
+    t.string 'last_name', null: false
+    t.string 'email', null: false
+    t.string 'stage', default: 'lead', null: false
+    t.string 'phone_number'
+    t.integer 'probability', default: 0
+    t.bigint 'company_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['company_id'], name: 'index_clients_on_company_id'
+    t.index ['email'], name: 'index_clients_on_email', unique: true
+    t.index ['stage'], name: 'index_clients_on_stage'
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
-    t.string "stage", default: "lead", null: false
-    t.string "phone_number"
-    t.integer "probability", default: 0
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_employees_on_company_id"
-    t.index ["email"], name: "index_employees_on_email", unique: true
-    t.index ["stage"], name: "index_employees_on_stage"
+  create_table 'companies', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'clients_count', default: 0
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['name'], name: 'index_companies_on_name', unique: true
   end
 
-  add_foreign_key "employees", "companies"
+  add_foreign_key 'clients', 'companies'
 end
