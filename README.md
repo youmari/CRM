@@ -23,7 +23,7 @@ Additional description of the project and its features.
   > in your cmd or command line navigate to where this project is located, then:
 
 ```bash
-cd CatsApp
+cd CRM
 ```
 
 > thereafter run
