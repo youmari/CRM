@@ -1,7 +1,5 @@
 # CRM
 
-Additional description of the project and its features.
-
 ## Built With
 
 - RUBY (3.2.1)
@@ -85,10 +83,6 @@ rails s
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
-
-## Acknowledgments
-
-- Special thanks to [Vc Lab](https://govclab.com/)
 
 ## Show your support
 
